@@ -1,0 +1,34 @@
+version: '3'
+volumes: {}
+
+services:
+  karma8_test_mysql:
+    container_name: karma8_test_mysql
+    environment:
+      - MYSQL_DATABASE=karma8_test
+      - MYSQL_USER=karma8_test
+      - MYSQL_PASSWORD=karma8_test
+      - MYSQL_ROOT_PASSWORD=root
+    image: mysql:latest
+    ports:
+      - "3336:3306"
+    labels:
+      org.label-schema.group: "karma8_test"
+
+  karma8_test_phpfpm:
+    container_name: karma8_test_phpfpm
+    build:
+      context: .
+      dockerfile: ./php/Dockerfile
+    expose:
+      - '9000'
+    command: bash -c "/usr/sbin/php-fpm8.2"
+    links:
+      - karma8_test_mysql
+    depends_on:
+      - karma8_test_mysql
+    volumes:
+      - ../:/var/www/karma8_test
+      - ./php/local.ini:/etc/php/8.2/cli/conf.d/99-overrides.ini
+    labels:
+      org.label-schema.group: "karma8_test"
