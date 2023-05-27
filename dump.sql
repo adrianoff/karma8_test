@@ -50,6 +50,26 @@ INSERT INTO `mailing_queue` VALUES (18,'Subscription notification reminder','nor
 UNLOCK TABLES;
 
 --
+-- Table structure for table `validation_queue`
+--
+
+DROP TABLE IF EXISTS `validation_queue`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `validation_queue` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `checked` tinyint(1) NOT NULL DEFAULT '0',
+  `valid` tinyint(1) NOT NULL DEFAULT '0',
+  `checked_at` datetime DEFAULT NULL,
+  `created_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `validation_queue_email_uindex` (`email`),
+  KEY `validation_queue_checked_index` (`checked`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb3;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `users`
 --
 
