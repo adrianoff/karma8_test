@@ -11,9 +11,9 @@
 Наполнение обеих таблиц происходит в файле _expire_remind.php_
 
 Запускаем по крону:<br/>
-expire_remind.php
-./mailing_queue/mq_manager.php
-./validation_queue/vq_manager.php
+expire_remind.php<br/>
+./mailing_queue/mq_manager.php<br/>
+./validation_queue/vq_manager.php<br/>
 
 Также предлагаю подтвержденные пользователем имейлы признать валидными и проставить 
 им valid=1 если confirmation=1, НО<br>
